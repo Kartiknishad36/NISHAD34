@@ -17,7 +17,7 @@ async def help(client: Client, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "ƨσʋяcɛ", url=f"https://t.me/RU_DRA_098"
+                        "ƨσʋяcɛ", url=f"https://t.me/KARTIK_X_UPDATE"
                     )
                 ]
             ]
@@ -28,13 +28,13 @@ async def help(client: Client, message: Message):
 @app.on_message(filters.command("clone"))
 async def clones(client: Client, message: Message):
     await message.reply_photo(
-        photo=f"https://graph.org/file/f0e790de4d84d5b4dab72-bc4dcadff42362281c.jpg",
-        caption=f"""**🙂You Are Not Sudo User So You Are Not Allowed To Clone Me.**\n**😌Click Given Below Button And Host Manually Otherwise Contact Owner @FroZzeN_xD For Clone.**""",
+        photo=f"https://files.catbox.moe/cb01s0.jpg",
+        caption=f"""**🙂You Are Not Sudo User So You Are Not Allowed To Clone Me.**\n**😌Click Given Below Button And Host Manually Otherwise Contact Owner @KAARTIK_NISHAD For Clone.**""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "ƨσʋяcɛ", url=f"https://t.me/RU_DRA_098"
+                        "ƨσʋяcɛ", url=f"https://t.me/KARTIK_X_UPDATE"
                     )
                 ]
             ]
