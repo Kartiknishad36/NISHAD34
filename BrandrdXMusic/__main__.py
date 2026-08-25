@@ -1,6 +1,5 @@
 import asyncio
 import importlib
-from sys import argv
 from pyrogram import idle
 from pytgcalls.exceptions import NoActiveGroupCall
 
@@ -12,8 +11,6 @@ from BrandrdXMusic.plugins import ALL_MODULES
 from BrandrdXMusic.utils.database import get_banned_users, get_gbanned
 from config import BANNED_USERS
 
-# Import the new script
-from BrandrdXMusic.plugins.tools import voice_chat_notifications
 
 async def init():
     if (
@@ -25,7 +22,9 @@ async def init():
     ):
         LOGGER(__name__).error("Assistant client variables not defined, exiting...")
         exit()
+
     await sudo()
+
     try:
         users = await get_gbanned()
         for user_id in users:
@@ -33,32 +32,40 @@ async def init():
         users = await get_banned_users()
         for user_id in users:
             BANNED_USERS.add(user_id)
-    except:
+    except Exception:
         pass
+
     await app.start()
+
     for all_module in ALL_MODULES:
         importlib.import_module("BrandrdXMusic.plugins" + all_module)
+
     LOGGER("BrandrdXMusic.plugins").info("Successfully Imported Modules...")
+
     await userbot.start()
     await Hotty.start()
+
     try:
         await Hotty.stream_call("https://graph.org/file/e999c40cb700e7c684b75.mp4")
     except NoActiveGroupCall:
-        LOGGER("RockyXMusic").error(
-            "Please turn on the videochat of your log group\channel.\n\nStopping Bot..."
+        LOGGER("BrandrdXMusic").error(
+            "Please turn on the videochat of your log group/channel.\n\nStopping Bot..."
         )
         exit()
-    except:
+    except Exception:
         pass
+
     await Hotty.decorators()
-    LOGGER("RockyXMusic").info(
-        "ᴅʀᴏᴘ ʏᴏᴜʀ ɢɪʀʟꜰʀɪᴇɴᴅ'ꜱ ɴᴜᴍʙᴇʀ ᴀᴛ @RU_DRA_098 ᴊᴏɪɴ @Deathmusic_bot , @RU_DRA_098"
-    )
+    LOGGER("BrandrdXMusic").info("Music Bot Started Successfully!")
+
     await idle()
+
     await app.stop()
     await userbot.stop()
-    LOGGER("RockyXMusic").info("Stopping Rudra Music Bot...")
+    LOGGER("BrandrdXMusic").info("Stopping Music Bot...")
 
 
 if __name__ == "__main__":
-    asyncio.get_event_loop().run_until_complete(init())
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(init())
