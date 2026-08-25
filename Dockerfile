@@ -1,14 +1,17 @@
-FROM nikolaik/python-nodejs:python3.10-nodejs19
+FROM python:3.11-slim
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends ffmpeg \
-    && apt-get clean \
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ffmpeg \
+    git \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
-COPY . /app/
-WORKDIR /app/
-RUN python3 -m pip install --upgrade pip setuptools
-RUN pip3 install --no-cache-dir --upgrade --requirement requirements.txt
+COPY requirements.txt .
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD python3 -m BrandrdXMusic
+COPY . .
 
+CMD ["python3", "-m", "BrandrdXMusic"]
